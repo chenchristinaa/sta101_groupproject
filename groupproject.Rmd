@@ -1,0 +1,37 @@
+---
+title: "Plant Pals Group Project"
+author: "Christina Chen"
+date: "2024-06-3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# reading libaries
+library(tidyverse)
+library(MuMIn)
+```
+
+```{r}
+# reading data
+trees <- read.table("data/Dryad.Upload.11.1013.Trees.txt", header = TRUE, sep = "\t", stringsAsFactors = FALSE, na.strings = "") %>% select(-contains("X"))
+soils <- read.table("data/Dryad.Upload.11.1013.Soils.txt", header = TRUE, sep = "\t", stringsAsFactors = FALSE, na.strings = "") %>% select(-contains("X"))
+```
+
+```{r}
+# playing around with the data
+trees$T2Diam <- as.numeric(trees$T2Diam)
+trees$T1Diam <- as.numeric(trees$T1Diam)
+trees$T0Diam <- as.numeric(trees$T0Diam)
+trees %>% mutate(growth = T2Diam -  T0Diam)
+```
+
+```{r}
+# making and comparing models with aicc
+model1 <- lm()
+AICc(model1)
+```
+
