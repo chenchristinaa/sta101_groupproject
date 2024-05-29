@@ -31,7 +31,11 @@ trees %>% mutate(growth = T2Diam -  T0Diam)
 
 ```{r}
 # making and comparing models with aicc
-model1 <- lm()
+model1 <- lm(growth ~ )
 AICc(model1)
+```
+
+```{r}
+summary(model1)$r.squared
 ```
 
