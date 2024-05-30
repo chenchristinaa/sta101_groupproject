@@ -73,7 +73,7 @@ abline(h = 0,col = "red",lty = 2)
 
 ```{r}
 par(mfrow = c(2, 3))
-# predicted vs observed for model 4
+# predicted vs observed for model 1
 plot(height ~ predict(metasequoia_model1), data = metasequoia, main = "Observed vs Predicted in Model 1", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
 # predicted vs observed for model 2
