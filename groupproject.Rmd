@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 # reading libaries
 library(tidyverse) # for read-csv (not necessary, but it's what I like to use)
+library(ModelMetrics)
 ```
 
 ```{r}
@@ -20,19 +21,102 @@ library(tidyverse) # for read-csv (not necessary, but it's what I like to use)
 # note: the data we were given is about 10% of the data they used, so our graphs will look slightly different
 metasequoia <- read_csv("data/metasequoia_data.csv")
 ```
+```{r}
+# data exploration
+metasequoia %>%
+  pivot_longer(col = c("height", "diameter"),
+               names_to = "datatype",
+               values_to = "values") %>%
+  group_by(datatype) %>%
+  summarise(mean = mean(values),
+            max = max(values),
+            min = min(values),
+            sd = sd(values)) %>%
+  t()
+```
+
+```{r}
+# models
+metasequoia_model1 <- lm(height ~ diameter, data = metasequoia)
+metasequoia_model2 <- lm(height ~ I(log(diameter)), data = metasequoia)
+metasequoia_model3 <- lm(height ~ diameter + I(diameter^2), data = metasequoia)
+metasequoia_model4 <- lm(height ~ I(diameter^2) + I(diameter^3), data = metasequoia)
+metasequoia_model5 <- lm(height ~ I(diameter^-1) + I(diameter^2), data = metasequoia)
+```
 
 ```{r}
 # Fig 2. Scatter diagram of the tree height and dbh of a single Metasequoia tree.
 plot(height ~ diameter, data = metasequoia)
+abline(a = 12.546, b = 0.264) # the paper's data's trendline
+abline(metasequoia_model1, col = "blue") # trendline for model 1
+abline(metasequoia_model2, col = "orange") # trendline for model 2
 ```
 
 ```{r}
-# making residuals plot (for model 1 maybe?)
-metasequoia_model1 <- lm(height ~ diameter, data = metasequoia) #this might not be model 1, it was just the most basic model I could come up with
-metasequoia_residual <- resid(metasequoia_model1)
-metasequoia_predicted <- predict(metasequoia_model1)
+par(mfrow = c(2, 3))
+# making residuals plot for model 1
+plot(resid(metasequoia_model1) ~ predict(metasequoia_model1), main = "Residual Plot for Model 1", xlab = "Predicted Values", ylab = "Residuals")
+abline(h = 0,col = "red",lty = 2)
+# making residuals plot for model 2
+plot(resid(metasequoia_model2) ~ predict(metasequoia_model2), main = "Residual Plot for Model 2", xlab = "Predicted Values", ylab = "Residuals")
+abline(h = 0,col = "red",lty = 2)
+# making residuals plot for model 3
+plot(resid(metasequoia_model3) ~ predict(metasequoia_model3), main = "Residual Plot for Model 3", xlab = "Predicted Values", ylab = "Residuals")
+abline(h = 0,col = "red",lty = 2)
+# making residuals plot for model 4
+plot(resid(metasequoia_model4) ~ predict(metasequoia_model4), main = "Residual Plot for Model 4", xlab = "Predicted Values", ylab = "Residuals")
+abline(h = 0,col = "red",lty = 2)
+# making residuals plot for model 5
+plot(resid(metasequoia_model5) ~ predict(metasequoia_model5), main = "Residual Plot for Model 5", xlab = "Predicted Values", ylab = "Residuals")
+abline(h = 0,col = "red",lty = 2)
+```
 
-plot(metasequoia_residual ~ metasequoia_predicted, xlab = "Predicted Values", ylab = "Residuals") # residual plot
-abline(h = 0,col = "red",lty = 2) # add red line
+```{r}
+par(mfrow = c(2, 3))
+# predicted vs observed for model 4
+plot(height ~ predict(metasequoia_model1), data = metasequoia, main = "Observed vs Predicted in Model 1", xlab = "Predicted", ylab = "Observed")
+abline(a = 0, b = 1, col = "red")
+# predicted vs observed for model 2
+plot(height ~ predict(metasequoia_model2), data = metasequoia, main = "Observed vs Predicted in Model 2", xlab = "Predicted", ylab = "Observed")
+abline(a = 0, b = 1, col = "red")
+# predicted vs observed for model 3
+plot(height ~ predict(metasequoia_model3), data = metasequoia, main = "Observed vs Predicted in Model 3", xlab = "Predicted", ylab = "Observed")
+abline(a = 0, b = 1, col = "red")
+# predicted vs observed for model 4
+plot(height ~ predict(metasequoia_model4), data = metasequoia, main = "Observed vs Predicted in Model 4", xlab = "Predicted", ylab = "Observed")
+abline(a = 0, b = 1, col = "red")
+# predicted vs observed for model 5
+plot(height ~ predict(metasequoia_model5), data = metasequoia, main = "Observed vs Predicted in Model 5", xlab = "Predicted", ylab = "Observed")
+abline(a = 0, b = 1, col = "red")
+```
+
+```{r}
+# calculating RMSE
+# we want the lowest value which is model 4
+rmse(metasequoia_model1) # can also use: rmse(metasequoia$height, predict(metasequoia_model1))
+rmse(metasequoia_model2)
+rmse(metasequoia_model3)
+rmse(metasequoia_model4)
+rmse(metasequoia_model5)
+```
+
+```{r}
+# calculating AIC
+# we want the lowest value which is model 4
+AIC(metasequoia_model1)
+AIC(metasequoia_model2)
+AIC(metasequoia_model3)
+AIC(metasequoia_model4)
+AIC(metasequoia_model5)
+```
+
+```{r}
+# calculating R^2adj
+# we want the highest value which is model 4
+summary(metasequoia_model1)$adj.r.squared
+summary(metasequoia_model2)$adj.r.squared
+summary(metasequoia_model3)$adj.r.squared
+summary(metasequoia_model4)$adj.r.squared
+summary(metasequoia_model5)$adj.r.squared
 ```
 
