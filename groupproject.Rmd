@@ -17,6 +17,7 @@ library(tidyverse) # for read-csv (not necessary, but it's what I like to use)
 ```{r}
 # reading data
 # note: data was obtained through a given docx, which I made into a google doc, then copy pasted to google sheets, then saved as a csv
+# note: the data we were given is about 10% of the data they used, so our graphs will look slightly different
 metasequoia <- read_csv("data/metasequoia_data.csv")
 ```
 
