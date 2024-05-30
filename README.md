@@ -1,11 +1,9 @@
 # Paper
 
-Thomas W. Baribault, Richard K. Kobe, and Andrew O. Finley. 2012. Tropical tree growth is correlated with soil phosphorus, 
-potassium, and calcium, though not for legumes. Ecological Monographs 82:189–203. http://dx.doi.org/10.1890/11-1013.1
+Liu M, Feng Z, Zhang Z, Ma C, Wang M, et al. (2017) Development and evaluation of height diameter at breast models for native Chinese Metasequoia. PLOS ONE 12(8): e0182170. https://doi.org/10.1371/journal.pone.0182170
 
 # Important Links
 
-- [Link to Paper (Article)](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/11-1013.1)
-- [Link to Paper (PDF)](https://esajournals.onlinelibrary.wiley.com/doi/epdf/10.1890/11-1013.1)
-- [Link to Data](https://datadryad.org/stash/dataset/doi:10.5061/dryad.r9p70)
-- [Link to Appendices](https://figshare.com/collections/_/3309684)
+- [Link to Paper (Article)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0182170#pone-0182170-t002)
+- [Link to Paper (PDF)](https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0182170&type=printable)
+- [Link to Data](https://figshare.com/articles/figure/Metasequoia/4956284)

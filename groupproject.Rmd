@@ -11,43 +11,27 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 # reading libaries
-library(tidyverse)
-library(MuMIn)
-library(spBayes)
+library(tidyverse) # for read-csv (not necessary, but it's what I like to use)
 ```
 
 ```{r}
 # reading data
-trees <- read.table("data/Dryad.Upload.11.1013.Trees.txt", header = TRUE, sep = "\t", stringsAsFactors = FALSE, na.strings = "") %>% select(-contains("X"))
-soils <- read.table("data/Dryad.Upload.11.1013.Soils.txt", header = TRUE, sep = "\t", stringsAsFactors = FALSE, na.strings = "") %>% select(-contains("."))
+# note: data was obtained through a given docx, which I made into a google doc, then copy pasted to google sheets, then saved as a csv
+metasequoia <- read_csv("data/metasequoia_data.csv")
 ```
 
 ```{r}
-# playing around with the data
-trees$T2Diam <- as.numeric(trees$T2Diam)
-trees$T1Diam <- as.numeric(trees$T1Diam)
-trees$T0Diam <- as.numeric(trees$T0Diam)
-trees %>% mutate(growth = T2Diam -  T0Diam)
+# Fig 2. Scatter diagram of the tree height and dbh of a single Metasequoia tree.
+plot(height ~ diameter, data = metasequoia)
 ```
 
 ```{r}
-trees %>%
-  pivot_longer(cols = ends_with("Diam"),
-               names_to = "diamtime",
-               values_to = "diameter") %>%
-  mutate(diamtime)
-  group_by(UID) %>%
-  ggplot(aes(x = date, y = diameter)) +
-  geom_point()
-```
+# making residuals plot (for model 1 maybe?)
+metasequoia_model1 <- lm(height ~ diameter, data = metasequoia) #this might not be model 1, it was just the most basic model I could come up with
+metasequoia_residual <- resid(metasequoia_model1)
+metasequoia_predicted <- predict(metasequoia_model1)
 
-```{r}
-# making and comparing models with aicc
-model1 <- lm(growth ~ )
-AICc(model1)
-```
-
-```{r}
-summary(model1)$r.squared
+plot(metasequoia_residual ~ metasequoia_predicted, xlab = "Predicted Values", ylab = "Residuals") # residual plot
+abline(h = 0,col = "red",lty = 2) # add red line
 ```
 
