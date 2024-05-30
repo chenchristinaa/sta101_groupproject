@@ -42,6 +42,8 @@ metasequoia_model2 <- lm(height ~ I(log(diameter)), data = metasequoia)
 metasequoia_model3 <- lm(height ~ diameter + I(diameter^2), data = metasequoia)
 metasequoia_model4 <- lm(height ~ I(diameter^2) + I(diameter^3), data = metasequoia)
 metasequoia_model5 <- lm(height ~ I(diameter^-1) + I(diameter^2), data = metasequoia)
+# about non-linear models: not sure how to do it and this code is broken
+# metasequoia_model8 <- nls(height ~ 1.3 + a1 * (1 - exp(-a1 * diameter))^a2, data = metasequoia, start = list(a1 = 1, a2 = 1))
 ```
 
 ```{r}
@@ -88,6 +90,15 @@ abline(a = 0, b = 1, col = "red")
 # predicted vs observed for model 5
 plot(height ~ predict(metasequoia_model5), data = metasequoia, main = "Observed vs Predicted in Model 5", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
+```
+
+```{r}
+# calculating bias
+mean((predict(metasequoia_model1) - metasequoia$height) / metasequoia$height) * 100
+mean((predict(metasequoia_model2) - metasequoia$height) / metasequoia$height) * 100
+mean((predict(metasequoia_model3) - metasequoia$height) / metasequoia$height) * 100
+mean((predict(metasequoia_model4) - metasequoia$height) / metasequoia$height) * 100
+mean((predict(metasequoia_model5) - metasequoia$height) / metasequoia$height) * 100
 ```
 
 ```{r}
