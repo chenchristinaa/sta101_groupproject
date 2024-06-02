@@ -155,6 +155,48 @@ abline(h = 0,col = "red",lty = 2)
 
 ```r
 #par(mfrow = c(2, 3))
+# making qq plot for model 1
+qqnorm(resid(metasequoia_model1), main = "Q-Q Plot for Model 1", col = "red")
+qqline(resid(metasequoia_model1))
+```
+
+![](groupproject_files/figure-html/QQ Plot-1.png)<!-- -->
+
+```r
+# making qq plot for model 2
+qqnorm(resid(metasequoia_model2), main = "Q-Q Plot for Model 2", col = "red")
+qqline(resid(metasequoia_model2))
+```
+
+![](groupproject_files/figure-html/QQ Plot-2.png)<!-- -->
+
+```r
+# making qq plot for model 3
+qqnorm(resid(metasequoia_model3), main = "Q-Q Plot for Model 3", col = "red")
+qqline(resid(metasequoia_model3))
+```
+
+![](groupproject_files/figure-html/QQ Plot-3.png)<!-- -->
+
+```r
+# making qq plot for model 4
+qqnorm(resid(metasequoia_model4), main = "Q-Q Plot for Model 4", col = "red")
+qqline(resid(metasequoia_model4))
+```
+
+![](groupproject_files/figure-html/QQ Plot-4.png)<!-- -->
+
+```r
+# making qq plot for model 5
+qqnorm(resid(metasequoia_model5), main = "Q-Q Plot for Model 5", col = "red")
+qqline(resid(metasequoia_model5))
+```
+
+![](groupproject_files/figure-html/QQ Plot-5.png)<!-- -->
+
+
+```r
+#par(mfrow = c(2, 3))
 # predicted vs observed for model 1
 plot(height ~ predict(metasequoia_model1), data = metasequoia, main = "Observed vs Predicted in Model 1", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")

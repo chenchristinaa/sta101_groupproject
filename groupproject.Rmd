@@ -80,6 +80,25 @@ plot(resid(metasequoia_model5) ~ predict(metasequoia_model5), main = "Residual P
 abline(h = 0,col = "red",lty = 2)
 ```
 
+```{r QQ Plot}
+#par(mfrow = c(2, 3))
+# making qq plot for model 1
+qqnorm(resid(metasequoia_model1), main = "Q-Q Plot for Model 1", col = "red")
+qqline(resid(metasequoia_model1))
+# making qq plot for model 2
+qqnorm(resid(metasequoia_model2), main = "Q-Q Plot for Model 2", col = "red")
+qqline(resid(metasequoia_model2))
+# making qq plot for model 3
+qqnorm(resid(metasequoia_model3), main = "Q-Q Plot for Model 3", col = "red")
+qqline(resid(metasequoia_model3))
+# making qq plot for model 4
+qqnorm(resid(metasequoia_model4), main = "Q-Q Plot for Model 4", col = "red")
+qqline(resid(metasequoia_model4))
+# making qq plot for model 5
+qqnorm(resid(metasequoia_model5), main = "Q-Q Plot for Model 5", col = "red")
+qqline(resid(metasequoia_model5))
+```
+
 ```{r Observed vs Predicted}
 #par(mfrow = c(2, 3))
 # predicted vs observed for model 1
