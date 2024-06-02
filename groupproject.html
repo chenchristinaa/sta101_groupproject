@@ -411,6 +411,11 @@ metasequoia_model4 &lt;- lm(height ~ I(diameter^2) + I(diameter^3), data = metas
 metasequoia_model5 &lt;- lm(height ~ I(diameter^-1) + I(diameter^2), data = metasequoia)
 # about non-linear models: not sure how to do it and this code is broken
 # metasequoia_model8 &lt;- nls(height ~ 1.3 + a1 * (1 - exp(-a1 * diameter))^a2, data = metasequoia, start = list(a1 = 1, a2 = 1))</code></pre>
+<p>Model 1: <span class="math inline">\(Y = 10.1942 + 0.3092x\)</span>
+Model 2: <span class="math inline">\(Y = -39.31 + 16.72log(x)\)</span>
+Model 3: <span class="math inline">\(Y = 7.4610696 + 0.4066729 -
+0.0008166x^2\)</span> Model 4: <span class="math inline">\(Y = 15.75 +
+0.005308x^2 + 0.00002802x^3\)</span> Model 5: <span class="math inline">\(Y = 30.73 - 411.7x^{-1} + 0.001373x^2\)</span></p>
 <pre class="r"><code># Fig 2. Scatter diagram of the tree height and dbh of a single Metasequoia tree.
 plot(height ~ diameter, data = metasequoia, main = &quot;Scatterplot of Height and Diameter&quot;, xlab = &quot;Diameter (at breast height in cm)&quot;, ylab = &quot;Height (in meters)&quot;)
 abline(a = 12.546, b = 0.264) # the paper&#39;s data&#39;s trendline
