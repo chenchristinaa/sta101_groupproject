@@ -1,0 +1,185 @@
+---
+title: "Untitled"
+author: "Liyuan Zhang"
+date: "2024-06-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#Data processing
+sequoia = read.csv("metasequoia_data.csv")
+sequoia$log.diameter <- log10(sequoia$diameter) 
+sequoia$squared.diameter <- (sequoia$diameter)^2
+sequoia$cubic.diameter <- (sequoia$diameter)^3
+sequoia$diameter.to.the.power.of.negativeone <- (sequoia$diameter)^-1
+
+#Model Selection
+full.model = lm(height ~ diameter + squared.diameter + cubic.diameter + log.diameter + diameter.to.the.power.of.negativeone, data = sequoia)
+empty.model = lm(height ~ 1,data = sequoia)
+
+n = nrow(sequoia)
+library(MASS)
+
+forward.model.AIC = stepAIC(empty.model, scope = list(lower = empty.model, upper= full.model), k = 2,direction = "forward",trace = FALSE)
+forward.model.BIC = stepAIC(empty.model,  scope = list(lower = empty.model, upper= full.model), k = log(n),trace=FALSE,direction = "forward")
+backward.model.AIC = stepAIC(full.model, scope = list(lower = empty.model, upper= full.model), k = 2,direction = "backward",trace = FALSE)
+backward.model.BIC = stepAIC(full.model,  scope = list(lower = empty.model, upper= full.model), k = log(n),trace=FALSE,direction = "backward")
+FB.model.AIC = stepAIC(empty.model, scope = list(lower = empty.model, upper= full.model), k = 2,direction = "both",trace = FALSE)
+FB.model.BIC = stepAIC(empty.model,  scope = list(lower = empty.model, upper= full.model), k = log(n),trace=FALSE,direction = "both")
+BF.model.AIC = stepAIC(full.model, scope = list(lower = empty.model, upper= full.model), k = 2,direction = "both",trace = FALSE)
+BF.model.BIC = stepAIC(full.model,  scope = list(lower = empty.model, upper= full.model), k = log(n),trace=FALSE,direction = "both")
+```
+```{r}
+#Calculating AIC
+AIC(forward.model.AIC)
+AIC(forward.model.BIC)
+AIC(backward.model.AIC)
+AIC(backward.model.BIC)
+AIC(FB.model.AIC)
+AIC(FB.model.BIC)
+AIC(BF.model.AIC)
+AIC(BF.model.BIC)
+```
+```{r}
+#Calculating BIC
+BIC(forward.model.AIC)
+BIC(forward.model.BIC)
+BIC(backward.model.AIC)
+BIC(backward.model.BIC)
+BIC(FB.model.AIC)
+BIC(FB.model.BIC)
+BIC(BF.model.AIC)
+BIC(BF.model.BIC)
+```
+```{r}
+#New Best Models
+best.AIC.model = backward.model.AIC
+best.BIC.model = forward.model.BIC
+model4 = lm(height ~  squared.diameter + cubic.diameter, data = sequoia)
+
+summary(best.AIC.model)$adj.r.squared
+summary(best.BIC.model)$adj.r.squared
+summary(model4)$adj.r.squared
+
+rmse(best.AIC.model) 
+rmse(best.BIC.model)
+rmse(model4)
+```
+
+```{r}
+sequoia$residuals = residuals(best.AIC.model)
+sequoia$std_residuals = rstandard(best.AIC.model)
+
+threshold = 2
+outliers = sequoia[abs(sequoia$std_residuals) > threshold, ]
+
+new.data1 <- sequoia[abs(sequoia$std_residuals) <= threshold, ]
+
+sequoia$residuals = residuals(best.BIC.model)
+sequoia$std_residuals = rstandard(best.BIC.model)
+
+threshold = 2
+outliers = sequoia[abs(sequoia$std_residuals) > threshold, ]
+
+new.data2 <- sequoia[abs(sequoia$std_residuals) <= threshold, ]
+
+sequoia$residuals = residuals(model4)
+sequoia$std_residuals = rstandard(model4)
+
+threshold = 2
+outliers = sequoia[abs(sequoia$std_residuals) > threshold, ]
+
+new.data3 <- sequoia[abs(sequoia$std_residuals) <= threshold, ]
+```
+
+
+```{r}
+#Re-model using the new dataset
+best.AIC.model$coefficients
+best.BIC.model$coefficients
+model4$coefficients
+
+model.a = lm(height ~ diameter + squared.diameter + log.diameter, data = new.data1)
+model.b = lm(height ~ diameter + cubic.diameter, data = new.data2)
+model.c = lm(height ~ squared.diameter + cubic.diameter, data = new.data3)
+```
+
+```{r}
+#SW TEST
+#A
+new.data1$ei = model.a$residuals
+new.data1$yhat = model.a$fitted.values
+
+ei = model.a$residuals
+the.SWtest = shapiro.test(ei)
+the.SWtest
+
+#B
+new.data2$ei = model.b$residuals
+new.data2$yhat = model.b$fitted.values
+
+ei = model.b$residuals
+the.SWtest = shapiro.test(ei)
+the.SWtest
+
+#C
+new.data3$ei = model.c$residuals
+new.data3$yhat = model.c$fitted.values
+
+ei = model.c$residuals
+the.SWtest = shapiro.test(ei)
+the.SWtest
+```
+
+```{r}
+#FK Test
+#A
+Group = rep("Lower",nrow(new.data1)) 
+Group[new.data1$height < median(new.data1$height)] = "Upper" 
+Group = as.factor(Group) 
+new.data1$Group = Group
+the.FKtest= fligner.test(new.data1$ei, new.data1$Group)
+the.FKtest
+
+#B
+Group = rep("Lower",nrow(new.data2))
+Group[new.data2$height < median(new.data2$height)] = "Upper" 
+Group = as.factor(Group) 
+new.data2$Group = Group
+the.FKtest= fligner.test(new.data2$ei, new.data2$Group)
+the.FKtest
+
+#C
+Group = rep("Lower",nrow(new.data3))
+Group[new.data3$height < median(new.data3$height)] = "Upper" 
+Group = as.factor(Group) 
+new.data3$Group = Group
+the.FKtest= fligner.test(new.data3$ei, new.data3$Group)
+the.FKtest
+```
+
+
+```{r}
+#Quality test of new models
+AIC(model.a)
+AIC(model.b)
+AIC(model.c)
+
+BIC(model.a)
+BIC(model.b)
+BIC(model.c)
+
+rmse(model.a)
+rmse(model.b)
+rmse(model.c)
+
+summary(model.a)$adj.r.squared
+summary(model.b)$adj.r.squared
+summary(model.c)$adj.r.squared
+```
+
+
