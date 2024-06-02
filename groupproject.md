@@ -102,51 +102,91 @@ abline(a = 12.546, b = 0.264) # the paper's data's trendline
 abline(metasequoia_model1, col = "red") # trendline for model 1
 ```
 
-![](groupproject_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![](groupproject_files/figure-html/Scatterplot-1.png)<!-- -->
 
 
 ```r
-par(mfrow = c(2, 3))
+#par(mfrow = c(2, 3))
 # making residuals plot for model 1
 plot(resid(metasequoia_model1) ~ predict(metasequoia_model1), main = "Residual Plot for Model 1", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
+```
+
+![](groupproject_files/figure-html/Residual Plot-1.png)<!-- -->
+
+```r
 # making residuals plot for model 2
 plot(resid(metasequoia_model2) ~ predict(metasequoia_model2), main = "Residual Plot for Model 2", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
+```
+
+![](groupproject_files/figure-html/Residual Plot-2.png)<!-- -->
+
+```r
 # making residuals plot for model 3
 plot(resid(metasequoia_model3) ~ predict(metasequoia_model3), main = "Residual Plot for Model 3", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
+```
+
+![](groupproject_files/figure-html/Residual Plot-3.png)<!-- -->
+
+```r
 # making residuals plot for model 4
 plot(resid(metasequoia_model4) ~ predict(metasequoia_model4), main = "Residual Plot for Model 4", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
+```
+
+![](groupproject_files/figure-html/Residual Plot-4.png)<!-- -->
+
+```r
 # making residuals plot for model 5
 plot(resid(metasequoia_model5) ~ predict(metasequoia_model5), main = "Residual Plot for Model 5", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
 ```
 
-![](groupproject_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+![](groupproject_files/figure-html/Residual Plot-5.png)<!-- -->
 
 
 ```r
-par(mfrow = c(2, 3))
+#par(mfrow = c(2, 3))
 # predicted vs observed for model 1
 plot(height ~ predict(metasequoia_model1), data = metasequoia, main = "Observed vs Predicted in Model 1", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
+```
+
+![](groupproject_files/figure-html/Observed vs Predicted-1.png)<!-- -->
+
+```r
 # predicted vs observed for model 2
 plot(height ~ predict(metasequoia_model2), data = metasequoia, main = "Observed vs Predicted in Model 2", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
+```
+
+![](groupproject_files/figure-html/Observed vs Predicted-2.png)<!-- -->
+
+```r
 # predicted vs observed for model 3
 plot(height ~ predict(metasequoia_model3), data = metasequoia, main = "Observed vs Predicted in Model 3", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
+```
+
+![](groupproject_files/figure-html/Observed vs Predicted-3.png)<!-- -->
+
+```r
 # predicted vs observed for model 4
 plot(height ~ predict(metasequoia_model4), data = metasequoia, main = "Observed vs Predicted in Model 4", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
+```
+
+![](groupproject_files/figure-html/Observed vs Predicted-4.png)<!-- -->
+
+```r
 # predicted vs observed for model 5
 plot(height ~ predict(metasequoia_model5), data = metasequoia, main = "Observed vs Predicted in Model 5", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
 ```
 
-![](groupproject_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+![](groupproject_files/figure-html/Observed vs Predicted-5.png)<!-- -->
 
 
 ```r

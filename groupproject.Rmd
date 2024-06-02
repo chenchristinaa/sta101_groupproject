@@ -48,15 +48,15 @@ metasequoia_model5 <- lm(height ~ I(diameter^-1) + I(diameter^2), data = metaseq
 # metasequoia_model8 <- nls(height ~ 1.3 + a1 * (1 - exp(-a1 * diameter))^a2, data = metasequoia, start = list(a1 = 1, a2 = 1))
 ```
 
-```{r}
+```{r Scatterplot}
 # Fig 2. Scatter diagram of the tree height and dbh of a single Metasequoia tree.
 plot(height ~ diameter, data = metasequoia, main = "Scatterplot of Height and Diameter", xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)")
 abline(a = 12.546, b = 0.264) # the paper's data's trendline
 abline(metasequoia_model1, col = "red") # trendline for model 1
 ```
 
-```{r}
-par(mfrow = c(2, 3))
+```{r Residual Plot}
+#par(mfrow = c(2, 3))
 # making residuals plot for model 1
 plot(resid(metasequoia_model1) ~ predict(metasequoia_model1), main = "Residual Plot for Model 1", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
@@ -74,8 +74,8 @@ plot(resid(metasequoia_model5) ~ predict(metasequoia_model5), main = "Residual P
 abline(h = 0,col = "red",lty = 2)
 ```
 
-```{r}
-par(mfrow = c(2, 3))
+```{r Observed vs Predicted}
+#par(mfrow = c(2, 3))
 # predicted vs observed for model 1
 plot(height ~ predict(metasequoia_model1), data = metasequoia, main = "Observed vs Predicted in Model 1", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
