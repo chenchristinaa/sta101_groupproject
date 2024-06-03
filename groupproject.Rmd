@@ -3,7 +3,7 @@ title: "STA 101: Group Project"
 author: "Plant Pals (Group 4)"
 date: "2024-06-3"
 output: 
-  html_document: 
+  pdf_document: 
     keep_md: true
 ---
 
@@ -166,3 +166,8 @@ confint(metasequoia_model4, level = 1-0.05) # this one
 confint(metasequoia_model5, level = 1-0.05)
 ```
 
+\newpage
+
+## Appendix 
+```{r, ref.label=knitr::all_labels(),echo=TRUE,eval=FALSE}
+```

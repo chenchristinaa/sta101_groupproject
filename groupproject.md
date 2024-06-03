@@ -1,9 +1,9 @@
 ---
-title: "Plant Pals Group Project"
-author: "Christina Chen"
+title: "STA 101: Group Project"
+author: "Plant Pals (Group 4)"
 date: "2024-06-3"
 output: 
-  html_document: 
+  pdf_document: 
     keep_md: true
 ---
 
@@ -12,20 +12,20 @@ output:
 
 ```r
 # reading libaries
-library(tidyverse) # for read-csv (not necessary, but it's what I like to use)
+library(tidyverse)
 ```
 
 ```
-## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-## ✔ purrr     1.0.2     
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.4     v readr     2.1.5
+## v forcats   1.0.0     v stringr   1.5.1
+## v ggplot2   3.5.1     v tibble    3.2.1
+## v lubridate 1.9.3     v tidyr     1.3.1
+## v purrr     1.0.2     
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
 ```r
@@ -51,12 +51,12 @@ metasequoia <- read_csv("data/metasequoia_data.csv")
 
 ```
 ## Rows: 500 Columns: 3
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## Delimiter: ","
 ## dbl (3): tree_number, diameter, height
 ## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 ```r
@@ -108,7 +108,7 @@ abline(a = 12.546, b = 0.264) # the paper's data's trendline
 abline(metasequoia_model1, col = "red") # trendline for model 1
 ```
 
-![](groupproject_files/figure-html/Scatterplot-1.png)<!-- -->
+![](groupproject_files/figure-latex/Scatterplot-1.pdf)<!-- --> 
 
 
 ```r
@@ -118,7 +118,7 @@ plot(resid(metasequoia_model1) ~ predict(metasequoia_model1), main = "Residual P
 abline(h = 0,col = "red",lty = 2)
 ```
 
-![](groupproject_files/figure-html/Residual Plot-1.png)<!-- -->
+![](groupproject_files/figure-latex/Residual Plot-1.pdf)<!-- --> 
 
 ```r
 # making residuals plot for model 2
@@ -126,7 +126,7 @@ plot(resid(metasequoia_model2) ~ predict(metasequoia_model2), main = "Residual P
 abline(h = 0,col = "red",lty = 2)
 ```
 
-![](groupproject_files/figure-html/Residual Plot-2.png)<!-- -->
+![](groupproject_files/figure-latex/Residual Plot-2.pdf)<!-- --> 
 
 ```r
 # making residuals plot for model 3
@@ -134,7 +134,7 @@ plot(resid(metasequoia_model3) ~ predict(metasequoia_model3), main = "Residual P
 abline(h = 0,col = "red",lty = 2)
 ```
 
-![](groupproject_files/figure-html/Residual Plot-3.png)<!-- -->
+![](groupproject_files/figure-latex/Residual Plot-3.pdf)<!-- --> 
 
 ```r
 # making residuals plot for model 4
@@ -142,7 +142,7 @@ plot(resid(metasequoia_model4) ~ predict(metasequoia_model4), main = "Residual P
 abline(h = 0,col = "red",lty = 2)
 ```
 
-![](groupproject_files/figure-html/Residual Plot-4.png)<!-- -->
+![](groupproject_files/figure-latex/Residual Plot-4.pdf)<!-- --> 
 
 ```r
 # making residuals plot for model 5
@@ -150,7 +150,7 @@ plot(resid(metasequoia_model5) ~ predict(metasequoia_model5), main = "Residual P
 abline(h = 0,col = "red",lty = 2)
 ```
 
-![](groupproject_files/figure-html/Residual Plot-5.png)<!-- -->
+![](groupproject_files/figure-latex/Residual Plot-5.pdf)<!-- --> 
 
 
 ```r
@@ -160,7 +160,7 @@ qqnorm(resid(metasequoia_model1), main = "Q-Q Plot for Model 1", col = "red")
 qqline(resid(metasequoia_model1))
 ```
 
-![](groupproject_files/figure-html/QQ Plot-1.png)<!-- -->
+![](groupproject_files/figure-latex/QQ Plot-1.pdf)<!-- --> 
 
 ```r
 # making qq plot for model 2
@@ -168,7 +168,7 @@ qqnorm(resid(metasequoia_model2), main = "Q-Q Plot for Model 2", col = "red")
 qqline(resid(metasequoia_model2))
 ```
 
-![](groupproject_files/figure-html/QQ Plot-2.png)<!-- -->
+![](groupproject_files/figure-latex/QQ Plot-2.pdf)<!-- --> 
 
 ```r
 # making qq plot for model 3
@@ -176,7 +176,7 @@ qqnorm(resid(metasequoia_model3), main = "Q-Q Plot for Model 3", col = "red")
 qqline(resid(metasequoia_model3))
 ```
 
-![](groupproject_files/figure-html/QQ Plot-3.png)<!-- -->
+![](groupproject_files/figure-latex/QQ Plot-3.pdf)<!-- --> 
 
 ```r
 # making qq plot for model 4
@@ -184,7 +184,7 @@ qqnorm(resid(metasequoia_model4), main = "Q-Q Plot for Model 4", col = "red")
 qqline(resid(metasequoia_model4))
 ```
 
-![](groupproject_files/figure-html/QQ Plot-4.png)<!-- -->
+![](groupproject_files/figure-latex/QQ Plot-4.pdf)<!-- --> 
 
 ```r
 # making qq plot for model 5
@@ -192,7 +192,7 @@ qqnorm(resid(metasequoia_model5), main = "Q-Q Plot for Model 5", col = "red")
 qqline(resid(metasequoia_model5))
 ```
 
-![](groupproject_files/figure-html/QQ Plot-5.png)<!-- -->
+![](groupproject_files/figure-latex/QQ Plot-5.pdf)<!-- --> 
 
 
 ```r
@@ -202,7 +202,7 @@ plot(height ~ predict(metasequoia_model1), data = metasequoia, main = "Observed 
 abline(a = 0, b = 1, col = "red")
 ```
 
-![](groupproject_files/figure-html/Observed vs Predicted-1.png)<!-- -->
+![](groupproject_files/figure-latex/Observed vs Predicted-1.pdf)<!-- --> 
 
 ```r
 # predicted vs observed for model 2
@@ -210,7 +210,7 @@ plot(height ~ predict(metasequoia_model2), data = metasequoia, main = "Observed 
 abline(a = 0, b = 1, col = "red")
 ```
 
-![](groupproject_files/figure-html/Observed vs Predicted-2.png)<!-- -->
+![](groupproject_files/figure-latex/Observed vs Predicted-2.pdf)<!-- --> 
 
 ```r
 # predicted vs observed for model 3
@@ -218,7 +218,7 @@ plot(height ~ predict(metasequoia_model3), data = metasequoia, main = "Observed 
 abline(a = 0, b = 1, col = "red")
 ```
 
-![](groupproject_files/figure-html/Observed vs Predicted-3.png)<!-- -->
+![](groupproject_files/figure-latex/Observed vs Predicted-3.pdf)<!-- --> 
 
 ```r
 # predicted vs observed for model 4
@@ -226,7 +226,7 @@ plot(height ~ predict(metasequoia_model4), data = metasequoia, main = "Observed 
 abline(a = 0, b = 1, col = "red")
 ```
 
-![](groupproject_files/figure-html/Observed vs Predicted-4.png)<!-- -->
+![](groupproject_files/figure-latex/Observed vs Predicted-4.pdf)<!-- --> 
 
 ```r
 # predicted vs observed for model 5
@@ -234,7 +234,7 @@ plot(height ~ predict(metasequoia_model5), data = metasequoia, main = "Observed 
 abline(a = 0, b = 1, col = "red")
 ```
 
-![](groupproject_files/figure-html/Observed vs Predicted-5.png)<!-- -->
+![](groupproject_files/figure-latex/Observed vs Predicted-5.pdf)<!-- --> 
 
 
 ```r
@@ -441,7 +441,7 @@ confint(metasequoia_model3, level = 1-0.05)
 ```
 
 ```r
-confint(metasequoia_model4, level = 1-0.05)
+confint(metasequoia_model4, level = 1-0.05) # this one
 ```
 
 ```
@@ -462,3 +462,121 @@ confint(metasequoia_model5, level = 1-0.05)
 ## I(diameter^2)   1.197215e-03  1.548137e-03
 ```
 
+\newpage
+
+## Appendix 
+
+```r
+knitr::opts_chunk$set(echo = TRUE)
+# reading libaries
+library(tidyverse)
+library(ModelMetrics)
+# reading data
+# note: data was obtained through a given docx, which I made into a google doc, then copy pasted to google sheets, then saved as a csv
+# note: the data we were given is about 10% of the data they used, so our graphs will look slightly different
+metasequoia <- read_csv("data/metasequoia_data.csv")
+# data exploration
+metasequoia %>%
+  pivot_longer(col = c("height", "diameter"),
+               names_to = "datatype",
+               values_to = "values") %>%
+  group_by(datatype) %>%
+  summarise(mean = mean(values),
+            max = max(values),
+            min = min(values),
+            sd = sd(values)) %>%
+  t()
+# models
+metasequoia_model1 <- lm(height ~ diameter, data = metasequoia)
+metasequoia_model2 <- lm(height ~ I(log(diameter)), data = metasequoia)
+metasequoia_model3 <- lm(height ~ diameter + I(diameter^2), data = metasequoia)
+metasequoia_model4 <- lm(height ~ I(diameter^2) + I(diameter^3), data = metasequoia)
+metasequoia_model5 <- lm(height ~ I(diameter^-1) + I(diameter^2), data = metasequoia)
+# about non-linear models: not sure how to do it and this code is broken
+# metasequoia_model8 <- nls(height ~ 1.3 + a1 * (1 - exp(-a1 * diameter))^a2, data = metasequoia, start = list(a1 = 1, a2 = 1))
+# Fig 2. Scatter diagram of the tree height and dbh of a single Metasequoia tree.
+plot(height ~ diameter, data = metasequoia, main = "Scatterplot of Height and Diameter", xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)")
+abline(a = 12.546, b = 0.264) # the paper's data's trendline
+abline(metasequoia_model1, col = "red") # trendline for model 1
+#par(mfrow = c(2, 3))
+# making residuals plot for model 1
+plot(resid(metasequoia_model1) ~ predict(metasequoia_model1), main = "Residual Plot for Model 1", xlab = "Predicted Values", ylab = "Residuals")
+abline(h = 0,col = "red",lty = 2)
+# making residuals plot for model 2
+plot(resid(metasequoia_model2) ~ predict(metasequoia_model2), main = "Residual Plot for Model 2", xlab = "Predicted Values", ylab = "Residuals")
+abline(h = 0,col = "red",lty = 2)
+# making residuals plot for model 3
+plot(resid(metasequoia_model3) ~ predict(metasequoia_model3), main = "Residual Plot for Model 3", xlab = "Predicted Values", ylab = "Residuals")
+abline(h = 0,col = "red",lty = 2)
+# making residuals plot for model 4
+plot(resid(metasequoia_model4) ~ predict(metasequoia_model4), main = "Residual Plot for Model 4", xlab = "Predicted Values", ylab = "Residuals")
+abline(h = 0,col = "red",lty = 2)
+# making residuals plot for model 5
+plot(resid(metasequoia_model5) ~ predict(metasequoia_model5), main = "Residual Plot for Model 5", xlab = "Predicted Values", ylab = "Residuals")
+abline(h = 0,col = "red",lty = 2)
+#par(mfrow = c(2, 3))
+# making qq plot for model 1
+qqnorm(resid(metasequoia_model1), main = "Q-Q Plot for Model 1", col = "red")
+qqline(resid(metasequoia_model1))
+# making qq plot for model 2
+qqnorm(resid(metasequoia_model2), main = "Q-Q Plot for Model 2", col = "red")
+qqline(resid(metasequoia_model2))
+# making qq plot for model 3
+qqnorm(resid(metasequoia_model3), main = "Q-Q Plot for Model 3", col = "red")
+qqline(resid(metasequoia_model3))
+# making qq plot for model 4
+qqnorm(resid(metasequoia_model4), main = "Q-Q Plot for Model 4", col = "red")
+qqline(resid(metasequoia_model4))
+# making qq plot for model 5
+qqnorm(resid(metasequoia_model5), main = "Q-Q Plot for Model 5", col = "red")
+qqline(resid(metasequoia_model5))
+#par(mfrow = c(2, 3))
+# predicted vs observed for model 1
+plot(height ~ predict(metasequoia_model1), data = metasequoia, main = "Observed vs Predicted in Model 1", xlab = "Predicted", ylab = "Observed")
+abline(a = 0, b = 1, col = "red")
+# predicted vs observed for model 2
+plot(height ~ predict(metasequoia_model2), data = metasequoia, main = "Observed vs Predicted in Model 2", xlab = "Predicted", ylab = "Observed")
+abline(a = 0, b = 1, col = "red")
+# predicted vs observed for model 3
+plot(height ~ predict(metasequoia_model3), data = metasequoia, main = "Observed vs Predicted in Model 3", xlab = "Predicted", ylab = "Observed")
+abline(a = 0, b = 1, col = "red")
+# predicted vs observed for model 4
+plot(height ~ predict(metasequoia_model4), data = metasequoia, main = "Observed vs Predicted in Model 4", xlab = "Predicted", ylab = "Observed")
+abline(a = 0, b = 1, col = "red")
+# predicted vs observed for model 5
+plot(height ~ predict(metasequoia_model5), data = metasequoia, main = "Observed vs Predicted in Model 5", xlab = "Predicted", ylab = "Observed")
+abline(a = 0, b = 1, col = "red")
+# calculating bias
+mean((predict(metasequoia_model1) - metasequoia$height) / metasequoia$height) * 100
+mean((predict(metasequoia_model2) - metasequoia$height) / metasequoia$height) * 100
+mean((predict(metasequoia_model3) - metasequoia$height) / metasequoia$height) * 100
+mean((predict(metasequoia_model4) - metasequoia$height) / metasequoia$height) * 100
+mean((predict(metasequoia_model5) - metasequoia$height) / metasequoia$height) * 100
+# calculating RMSE
+# we want the lowest value which is model 4
+rmse(metasequoia_model1) # can also use: rmse(metasequoia$height, predict(metasequoia_model1))
+rmse(metasequoia_model2)
+rmse(metasequoia_model3)
+rmse(metasequoia_model4)
+rmse(metasequoia_model5)
+# calculating AIC
+# we want the lowest value which is model 4
+AIC(metasequoia_model1)
+AIC(metasequoia_model2)
+AIC(metasequoia_model3)
+AIC(metasequoia_model4)
+AIC(metasequoia_model5)
+# calculating R^2adj
+# we want the highest value which is model 4
+summary(metasequoia_model1)$adj.r.squared
+summary(metasequoia_model2)$adj.r.squared
+summary(metasequoia_model3)$adj.r.squared
+summary(metasequoia_model4)$adj.r.squared
+summary(metasequoia_model5)$adj.r.squared
+# calculating CIs
+confint(metasequoia_model1, level = 1-0.05)
+confint(metasequoia_model2, level = 1-0.05)
+confint(metasequoia_model3, level = 1-0.05)
+confint(metasequoia_model4, level = 1-0.05) # this one
+confint(metasequoia_model5, level = 1-0.05)
+```
