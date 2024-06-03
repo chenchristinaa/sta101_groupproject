@@ -407,3 +407,58 @@ summary(metasequoia_model5)$adj.r.squared
 ## [1] 0.8516588
 ```
 
+
+```r
+# calculating CIs
+confint(metasequoia_model1, level = 1-0.05)
+```
+
+```
+##                 2.5 %     97.5 %
+## (Intercept) 9.5906813 10.7977800
+## diameter    0.2981895  0.3201372
+```
+
+```r
+confint(metasequoia_model2, level = 1-0.05)
+```
+
+```
+##                      2.5 %    97.5 %
+## (Intercept)      -41.78667 -36.82948
+## I(log(diameter))  16.09408  17.34758
+```
+
+```r
+confint(metasequoia_model3, level = 1-0.05)
+```
+
+```
+##                      2.5 %       97.5 %
+## (Intercept)    5.969239960  8.952899316
+## diameter       0.356681537  0.456664165
+## I(diameter^2) -0.001225269 -0.000407843
+```
+
+```r
+confint(metasequoia_model4, level = 1-0.05)
+```
+
+```
+##                       2.5 %        97.5 %
+## (Intercept)    1.521801e+01  1.628303e+01
+## I(diameter^2)  4.946444e-03  5.670146e-03
+## I(diameter^3) -3.143211e-05 -2.460142e-05
+```
+
+```r
+confint(metasequoia_model5, level = 1-0.05)
+```
+
+```
+##                        2.5 %        97.5 %
+## (Intercept)     2.909117e+01  3.236874e+01
+## I(diameter^-1) -4.698412e+02 -3.535830e+02
+## I(diameter^2)   1.197215e-03  1.548137e-03
+```
+
