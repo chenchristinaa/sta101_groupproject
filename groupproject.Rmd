@@ -157,3 +157,12 @@ summary(metasequoia_model4)$adj.r.squared
 summary(metasequoia_model5)$adj.r.squared
 ```
 
+```{r}
+# calculating CIs
+confint(metasequoia_model1, level = 1-0.05)
+confint(metasequoia_model2, level = 1-0.05)
+confint(metasequoia_model3, level = 1-0.05)
+confint(metasequoia_model4, level = 1-0.05)
+confint(metasequoia_model5, level = 1-0.05)
+```
+
