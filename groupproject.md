@@ -57,8 +57,11 @@ library(MASS)
 
 ```r
 # reading data
-# note: data was obtained through a given docx, which I made into a google doc, then copy pasted to google sheets, then saved as a csv
-# note: the data we were given is about 10% of the data they used, so our graphs will look slightly different
+# note: data was obtained through a given docx, 
+# which I made into a google doc, then copy pasted to google sheets, 
+# then saved as a csv
+# note: the data we were given is about 10% of the data they used, 
+# so our graphs will look slightly different
 metasequoia <- read_csv("data/metasequoia_data.csv")
 ```
 
@@ -103,8 +106,6 @@ metasequoia_model2 <- lm(height ~ I(log(diameter)), data = metasequoia)
 metasequoia_model3 <- lm(height ~ diameter + I(diameter^2), data = metasequoia)
 metasequoia_model4 <- lm(height ~ I(diameter^2) + I(diameter^3), data = metasequoia)
 metasequoia_model5 <- lm(height ~ I(diameter^-1) + I(diameter^2), data = metasequoia)
-# about non-linear models: not sure how to do it and this code is broken
-# metasequoia_model8 <- nls(height ~ 1.3 + a1 * (1 - exp(-a1 * diameter))^a2, data = metasequoia, start = list(a1 = 1, a2 = 1))
 ```
 
 Model 1: $Y = 10.1942 + 0.3092x$
@@ -116,7 +117,8 @@ Model 5: $Y = 30.73 - 411.7x^{-1} + 0.001373x^2$
 
 ```r
 # Fig 2. Scatter diagram of the tree height and dbh of a single Metasequoia tree.
-plot(height ~ diameter, data = metasequoia, main = "Scatterplot of Height and Diameter", xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)")
+plot(height ~ diameter, data = metasequoia, main = "Scatterplot of Height and Diameter", 
+     xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)")
 abline(a = 12.546, b = 0.264) # the paper's data's trendline
 abline(metasequoia_model1, col = "red") # trendline for model 1
 ```
@@ -127,7 +129,8 @@ abline(metasequoia_model1, col = "red") # trendline for model 1
 ```r
 #par(mfrow = c(2, 3))
 # making residuals plot for model 1
-plot(resid(metasequoia_model1) ~ predict(metasequoia_model1), main = "Residual Plot for Model 1", xlab = "Predicted Values", ylab = "Residuals")
+plot(resid(metasequoia_model1) ~ predict(metasequoia_model1), 
+     main = "Residual Plot for Model 1", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
 ```
 
@@ -135,7 +138,8 @@ abline(h = 0,col = "red",lty = 2)
 
 ```r
 # making residuals plot for model 2
-plot(resid(metasequoia_model2) ~ predict(metasequoia_model2), main = "Residual Plot for Model 2", xlab = "Predicted Values", ylab = "Residuals")
+plot(resid(metasequoia_model2) ~ predict(metasequoia_model2), 
+     main = "Residual Plot for Model 2", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
 ```
 
@@ -143,7 +147,8 @@ abline(h = 0,col = "red",lty = 2)
 
 ```r
 # making residuals plot for model 3
-plot(resid(metasequoia_model3) ~ predict(metasequoia_model3), main = "Residual Plot for Model 3", xlab = "Predicted Values", ylab = "Residuals")
+plot(resid(metasequoia_model3) ~ predict(metasequoia_model3), 
+     main = "Residual Plot for Model 3", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
 ```
 
@@ -151,7 +156,8 @@ abline(h = 0,col = "red",lty = 2)
 
 ```r
 # making residuals plot for model 4
-plot(resid(metasequoia_model4) ~ predict(metasequoia_model4), main = "Residual Plot for Model 4", xlab = "Predicted Values", ylab = "Residuals")
+plot(resid(metasequoia_model4) ~ predict(metasequoia_model4), 
+     main = "Residual Plot for Model 4", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
 ```
 
@@ -159,7 +165,8 @@ abline(h = 0,col = "red",lty = 2)
 
 ```r
 # making residuals plot for model 5
-plot(resid(metasequoia_model5) ~ predict(metasequoia_model5), main = "Residual Plot for Model 5", xlab = "Predicted Values", ylab = "Residuals")
+plot(resid(metasequoia_model5) ~ predict(metasequoia_model5), 
+     main = "Residual Plot for Model 5", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
 ```
 
@@ -211,7 +218,8 @@ qqline(resid(metasequoia_model5))
 ```r
 #par(mfrow = c(2, 3))
 # predicted vs observed for model 1
-plot(height ~ predict(metasequoia_model1), data = metasequoia, main = "Observed vs Predicted in Model 1", xlab = "Predicted", ylab = "Observed")
+plot(height ~ predict(metasequoia_model1), data = metasequoia, 
+     main = "Observed vs Predicted in Model 1", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
 ```
 
@@ -219,7 +227,8 @@ abline(a = 0, b = 1, col = "red")
 
 ```r
 # predicted vs observed for model 2
-plot(height ~ predict(metasequoia_model2), data = metasequoia, main = "Observed vs Predicted in Model 2", xlab = "Predicted", ylab = "Observed")
+plot(height ~ predict(metasequoia_model2), data = metasequoia, 
+     main = "Observed vs Predicted in Model 2", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
 ```
 
@@ -227,7 +236,8 @@ abline(a = 0, b = 1, col = "red")
 
 ```r
 # predicted vs observed for model 3
-plot(height ~ predict(metasequoia_model3), data = metasequoia, main = "Observed vs Predicted in Model 3", xlab = "Predicted", ylab = "Observed")
+plot(height ~ predict(metasequoia_model3), data = metasequoia, 
+     main = "Observed vs Predicted in Model 3", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
 ```
 
@@ -235,7 +245,8 @@ abline(a = 0, b = 1, col = "red")
 
 ```r
 # predicted vs observed for model 4
-plot(height ~ predict(metasequoia_model4), data = metasequoia, main = "Observed vs Predicted in Model 4", xlab = "Predicted", ylab = "Observed")
+plot(height ~ predict(metasequoia_model4), data = metasequoia, 
+     main = "Observed vs Predicted in Model 4", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
 ```
 
@@ -243,7 +254,8 @@ abline(a = 0, b = 1, col = "red")
 
 ```r
 # predicted vs observed for model 5
-plot(height ~ predict(metasequoia_model5), data = metasequoia, main = "Observed vs Predicted in Model 5", xlab = "Predicted", ylab = "Observed")
+plot(height ~ predict(metasequoia_model5), data = metasequoia, 
+     main = "Observed vs Predicted in Model 5", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
 ```
 
@@ -485,19 +497,28 @@ sequoia$cubic.diameter <- (sequoia$diameter)^3
 sequoia$diameter.to.the.power.of.negativeone <- (sequoia$diameter)^-1
 
 #Model Selection
-full.model = lm(height ~ diameter + squared.diameter + cubic.diameter + log.diameter + diameter.to.the.power.of.negativeone, data = sequoia)
+full.model = lm(height ~ diameter + squared.diameter + cubic.diameter + 
+                  log.diameter + diameter.to.the.power.of.negativeone, data = sequoia)
 empty.model = lm(height ~ 1,data = sequoia)
 
 n = nrow(sequoia)
 
-forward.model.AIC = stepAIC(empty.model, scope = list(lower = empty.model, upper= full.model), k = 2,direction = "forward",trace = FALSE)
-forward.model.BIC = stepAIC(empty.model,  scope = list(lower = empty.model, upper= full.model), k = log(n),trace=FALSE,direction = "forward")
-backward.model.AIC = stepAIC(full.model, scope = list(lower = empty.model, upper= full.model), k = 2,direction = "backward",trace = FALSE)
-backward.model.BIC = stepAIC(full.model,  scope = list(lower = empty.model, upper= full.model), k = log(n),trace=FALSE,direction = "backward")
-FB.model.AIC = stepAIC(empty.model, scope = list(lower = empty.model, upper= full.model), k = 2,direction = "both",trace = FALSE)
-FB.model.BIC = stepAIC(empty.model,  scope = list(lower = empty.model, upper= full.model), k = log(n),trace=FALSE,direction = "both")
-BF.model.AIC = stepAIC(full.model, scope = list(lower = empty.model, upper= full.model), k = 2,direction = "both",trace = FALSE)
-BF.model.BIC = stepAIC(full.model,  scope = list(lower = empty.model, upper= full.model), k = log(n),trace=FALSE,direction = "both")
+forward.model.AIC = stepAIC(empty.model, scope = list(lower = empty.model, 
+              upper= full.model), k = 2,direction = "forward",trace = FALSE)
+forward.model.BIC = stepAIC(empty.model,  scope = list(lower = empty.model, 
+              upper= full.model), k = log(n),trace=FALSE,direction = "forward")
+backward.model.AIC = stepAIC(full.model, scope = list(lower = empty.model, 
+              upper= full.model), k = 2,direction = "backward",trace = FALSE)
+backward.model.BIC = stepAIC(full.model,  scope = list(lower = empty.model, 
+              upper= full.model), k = log(n),trace=FALSE,direction = "backward")
+FB.model.AIC = stepAIC(empty.model, scope = list(lower = empty.model, 
+              upper= full.model), k = 2,direction = "both",trace = FALSE)
+FB.model.BIC = stepAIC(empty.model,  scope = list(lower = empty.model, 
+              upper= full.model), k = log(n),trace=FALSE,direction = "both")
+BF.model.AIC = stepAIC(full.model, scope = list(lower = empty.model, 
+              upper= full.model), k = 2,direction = "both",trace = FALSE)
+BF.model.BIC = stepAIC(full.model,  scope = list(lower = empty.model, 
+              upper= full.model), k = log(n),trace=FALSE,direction = "both")
 model4 = lm(height ~  squared.diameter + cubic.diameter, data = sequoia)
 ```
 
@@ -1213,8 +1234,11 @@ library(tidyverse)
 library(ModelMetrics)
 library(MASS)
 # reading data
-# note: data was obtained through a given docx, which I made into a google doc, then copy pasted to google sheets, then saved as a csv
-# note: the data we were given is about 10% of the data they used, so our graphs will look slightly different
+# note: data was obtained through a given docx, 
+# which I made into a google doc, then copy pasted to google sheets, 
+# then saved as a csv
+# note: the data we were given is about 10% of the data they used, 
+# so our graphs will look slightly different
 metasequoia <- read_csv("data/metasequoia_data.csv")
 # data exploration
 metasequoia %>%
@@ -1233,27 +1257,31 @@ metasequoia_model2 <- lm(height ~ I(log(diameter)), data = metasequoia)
 metasequoia_model3 <- lm(height ~ diameter + I(diameter^2), data = metasequoia)
 metasequoia_model4 <- lm(height ~ I(diameter^2) + I(diameter^3), data = metasequoia)
 metasequoia_model5 <- lm(height ~ I(diameter^-1) + I(diameter^2), data = metasequoia)
-# about non-linear models: not sure how to do it and this code is broken
-# metasequoia_model8 <- nls(height ~ 1.3 + a1 * (1 - exp(-a1 * diameter))^a2, data = metasequoia, start = list(a1 = 1, a2 = 1))
 # Fig 2. Scatter diagram of the tree height and dbh of a single Metasequoia tree.
-plot(height ~ diameter, data = metasequoia, main = "Scatterplot of Height and Diameter", xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)")
+plot(height ~ diameter, data = metasequoia, main = "Scatterplot of Height and Diameter", 
+     xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)")
 abline(a = 12.546, b = 0.264) # the paper's data's trendline
 abline(metasequoia_model1, col = "red") # trendline for model 1
 #par(mfrow = c(2, 3))
 # making residuals plot for model 1
-plot(resid(metasequoia_model1) ~ predict(metasequoia_model1), main = "Residual Plot for Model 1", xlab = "Predicted Values", ylab = "Residuals")
+plot(resid(metasequoia_model1) ~ predict(metasequoia_model1), 
+     main = "Residual Plot for Model 1", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
 # making residuals plot for model 2
-plot(resid(metasequoia_model2) ~ predict(metasequoia_model2), main = "Residual Plot for Model 2", xlab = "Predicted Values", ylab = "Residuals")
+plot(resid(metasequoia_model2) ~ predict(metasequoia_model2), 
+     main = "Residual Plot for Model 2", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
 # making residuals plot for model 3
-plot(resid(metasequoia_model3) ~ predict(metasequoia_model3), main = "Residual Plot for Model 3", xlab = "Predicted Values", ylab = "Residuals")
+plot(resid(metasequoia_model3) ~ predict(metasequoia_model3), 
+     main = "Residual Plot for Model 3", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
 # making residuals plot for model 4
-plot(resid(metasequoia_model4) ~ predict(metasequoia_model4), main = "Residual Plot for Model 4", xlab = "Predicted Values", ylab = "Residuals")
+plot(resid(metasequoia_model4) ~ predict(metasequoia_model4), 
+     main = "Residual Plot for Model 4", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
 # making residuals plot for model 5
-plot(resid(metasequoia_model5) ~ predict(metasequoia_model5), main = "Residual Plot for Model 5", xlab = "Predicted Values", ylab = "Residuals")
+plot(resid(metasequoia_model5) ~ predict(metasequoia_model5), 
+     main = "Residual Plot for Model 5", xlab = "Predicted Values", ylab = "Residuals")
 abline(h = 0,col = "red",lty = 2)
 #par(mfrow = c(2, 3))
 # making qq plot for model 1
@@ -1273,19 +1301,24 @@ qqnorm(resid(metasequoia_model5), main = "Q-Q Plot for Model 5", col = "red")
 qqline(resid(metasequoia_model5))
 #par(mfrow = c(2, 3))
 # predicted vs observed for model 1
-plot(height ~ predict(metasequoia_model1), data = metasequoia, main = "Observed vs Predicted in Model 1", xlab = "Predicted", ylab = "Observed")
+plot(height ~ predict(metasequoia_model1), data = metasequoia, 
+     main = "Observed vs Predicted in Model 1", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
 # predicted vs observed for model 2
-plot(height ~ predict(metasequoia_model2), data = metasequoia, main = "Observed vs Predicted in Model 2", xlab = "Predicted", ylab = "Observed")
+plot(height ~ predict(metasequoia_model2), data = metasequoia, 
+     main = "Observed vs Predicted in Model 2", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
 # predicted vs observed for model 3
-plot(height ~ predict(metasequoia_model3), data = metasequoia, main = "Observed vs Predicted in Model 3", xlab = "Predicted", ylab = "Observed")
+plot(height ~ predict(metasequoia_model3), data = metasequoia, 
+     main = "Observed vs Predicted in Model 3", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
 # predicted vs observed for model 4
-plot(height ~ predict(metasequoia_model4), data = metasequoia, main = "Observed vs Predicted in Model 4", xlab = "Predicted", ylab = "Observed")
+plot(height ~ predict(metasequoia_model4), data = metasequoia, 
+     main = "Observed vs Predicted in Model 4", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
 # predicted vs observed for model 5
-plot(height ~ predict(metasequoia_model5), data = metasequoia, main = "Observed vs Predicted in Model 5", xlab = "Predicted", ylab = "Observed")
+plot(height ~ predict(metasequoia_model5), data = metasequoia, 
+     main = "Observed vs Predicted in Model 5", xlab = "Predicted", ylab = "Observed")
 abline(a = 0, b = 1, col = "red")
 # calculating bias
 mean((predict(metasequoia_model1) - metasequoia$height) / metasequoia$height) * 100
@@ -1328,19 +1361,28 @@ sequoia$cubic.diameter <- (sequoia$diameter)^3
 sequoia$diameter.to.the.power.of.negativeone <- (sequoia$diameter)^-1
 
 #Model Selection
-full.model = lm(height ~ diameter + squared.diameter + cubic.diameter + log.diameter + diameter.to.the.power.of.negativeone, data = sequoia)
+full.model = lm(height ~ diameter + squared.diameter + cubic.diameter + 
+                  log.diameter + diameter.to.the.power.of.negativeone, data = sequoia)
 empty.model = lm(height ~ 1,data = sequoia)
 
 n = nrow(sequoia)
 
-forward.model.AIC = stepAIC(empty.model, scope = list(lower = empty.model, upper= full.model), k = 2,direction = "forward",trace = FALSE)
-forward.model.BIC = stepAIC(empty.model,  scope = list(lower = empty.model, upper= full.model), k = log(n),trace=FALSE,direction = "forward")
-backward.model.AIC = stepAIC(full.model, scope = list(lower = empty.model, upper= full.model), k = 2,direction = "backward",trace = FALSE)
-backward.model.BIC = stepAIC(full.model,  scope = list(lower = empty.model, upper= full.model), k = log(n),trace=FALSE,direction = "backward")
-FB.model.AIC = stepAIC(empty.model, scope = list(lower = empty.model, upper= full.model), k = 2,direction = "both",trace = FALSE)
-FB.model.BIC = stepAIC(empty.model,  scope = list(lower = empty.model, upper= full.model), k = log(n),trace=FALSE,direction = "both")
-BF.model.AIC = stepAIC(full.model, scope = list(lower = empty.model, upper= full.model), k = 2,direction = "both",trace = FALSE)
-BF.model.BIC = stepAIC(full.model,  scope = list(lower = empty.model, upper= full.model), k = log(n),trace=FALSE,direction = "both")
+forward.model.AIC = stepAIC(empty.model, scope = list(lower = empty.model, 
+              upper= full.model), k = 2,direction = "forward",trace = FALSE)
+forward.model.BIC = stepAIC(empty.model,  scope = list(lower = empty.model, 
+              upper= full.model), k = log(n),trace=FALSE,direction = "forward")
+backward.model.AIC = stepAIC(full.model, scope = list(lower = empty.model, 
+              upper= full.model), k = 2,direction = "backward",trace = FALSE)
+backward.model.BIC = stepAIC(full.model,  scope = list(lower = empty.model, 
+              upper= full.model), k = log(n),trace=FALSE,direction = "backward")
+FB.model.AIC = stepAIC(empty.model, scope = list(lower = empty.model, 
+              upper= full.model), k = 2,direction = "both",trace = FALSE)
+FB.model.BIC = stepAIC(empty.model,  scope = list(lower = empty.model, 
+              upper= full.model), k = log(n),trace=FALSE,direction = "both")
+BF.model.AIC = stepAIC(full.model, scope = list(lower = empty.model, 
+              upper= full.model), k = 2,direction = "both",trace = FALSE)
+BF.model.BIC = stepAIC(full.model,  scope = list(lower = empty.model, 
+              upper= full.model), k = log(n),trace=FALSE,direction = "both")
 model4 = lm(height ~  squared.diameter + cubic.diameter, data = sequoia)
 #Calculating AIC
 AIC(forward.model.AIC)
