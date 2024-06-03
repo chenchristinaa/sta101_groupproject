@@ -10,11 +10,6 @@ output:
 
 
 
-```r
-# reading libaries
-library(tidyverse)
-```
-
 ```
 ## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
 ## v dplyr     1.1.4     v readr     2.1.5
@@ -26,44 +21,24 @@ library(tidyverse)
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 ## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-```
-
-```r
-library(ModelMetrics)
-```
-
-```
 ## 
 ## Attaching package: 'ModelMetrics'
+## 
 ## 
 ## The following object is masked from 'package:base':
 ## 
 ##     kappa
-```
-
-```r
-library(MASS)
-```
-
-```
+## 
+## 
 ## 
 ## Attaching package: 'MASS'
+## 
 ## 
 ## The following object is masked from 'package:dplyr':
 ## 
 ##     select
 ```
 
-
-```r
-# reading data
-# note: data was obtained through a given docx, 
-# which I made into a google doc, then copy pasted to google sheets, 
-# then saved as a csv
-# note: the data we were given is about 10% of the data they used, 
-# so our graphs will look slightly different
-metasequoia <- read_csv("data/metasequoia_data.csv")
-```
 
 ```
 ## Rows: 500 Columns: 3

@@ -11,14 +11,14 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r echo=FALSE}
 # reading libaries
 library(tidyverse)
 library(ModelMetrics)
 library(MASS)
 ```
 
-```{r}
+```{r echo=FALSE}
 # reading data
 # note: data was obtained through a given docx, 
 # which I made into a google doc, then copy pasted to google sheets, 
