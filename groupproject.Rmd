@@ -1,6 +1,6 @@
 ---
-title: "Plant Pals Group Project"
-author: "Christina Chen"
+title: "STA 101: Group Project"
+author: "Plant Pals (Group 4)"
 date: "2024-06-3"
 output: 
   html_document: 
@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 # reading libaries
-library(tidyverse) # for read-csv (not necessary, but it's what I like to use)
+library(tidyverse)
 library(ModelMetrics)
 ```
 
@@ -162,7 +162,7 @@ summary(metasequoia_model5)$adj.r.squared
 confint(metasequoia_model1, level = 1-0.05)
 confint(metasequoia_model2, level = 1-0.05)
 confint(metasequoia_model3, level = 1-0.05)
-confint(metasequoia_model4, level = 1-0.05)
+confint(metasequoia_model4, level = 1-0.05) # this one
 confint(metasequoia_model5, level = 1-0.05)
 ```
 

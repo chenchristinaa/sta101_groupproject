@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 #Data processing
-sequoia = read.csv("metasequoia_data.csv")
+sequoia = read.csv("data/metasequoia_data.csv")
 sequoia$log.diameter <- log10(sequoia$diameter) 
 sequoia$squared.diameter <- (sequoia$diameter)^2
 sequoia$cubic.diameter <- (sequoia$diameter)^3
@@ -23,6 +23,7 @@ empty.model = lm(height ~ 1,data = sequoia)
 
 n = nrow(sequoia)
 library(MASS)
+library(ModelMetrics)
 
 forward.model.AIC = stepAIC(empty.model, scope = list(lower = empty.model, upper= full.model), k = 2,direction = "forward",trace = FALSE)
 forward.model.BIC = stepAIC(empty.model,  scope = list(lower = empty.model, upper= full.model), k = log(n),trace=FALSE,direction = "forward")
