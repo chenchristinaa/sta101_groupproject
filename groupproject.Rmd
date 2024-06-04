@@ -161,6 +161,16 @@ AIC(metasequoia_model5)
 ```
 
 ```{r}
+# calculating BIC
+# we want the lowest value which is model 4
+BIC(metasequoia_model1)
+BIC(metasequoia_model2)
+BIC(metasequoia_model3)
+BIC(metasequoia_model4)
+BIC(metasequoia_model5)
+```
+
+```{r}
 # calculating R^2adj
 # we want the highest value which is model 4
 summary(metasequoia_model1)$adj.r.squared
