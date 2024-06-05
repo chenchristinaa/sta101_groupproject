@@ -1,9 +1,11 @@
 ---
-title: "STA 101: Group Project"
+title: 'STA 101: Group Project'
 author: "Plant Pals (Group 4)"
 date: "2024-06-3"
-output: 
-  pdf_document: 
+output:
+  pdf_document:
+    keep_md: true
+  html_document: 
     keep_md: true
 ---
 
@@ -99,6 +101,39 @@ abline(metasequoia_model1, col = "red") # trendline for model 1
 ```
 
 ![](groupproject_files/figure-latex/Scatterplot-1.pdf)<!-- --> 
+
+
+```r
+point_color <- rgb(0, 0, 0, alpha = 0.25)
+par(mfrow = c(2, 3))
+plot(height ~ diameter, data = metasequoia, main = "Height vs Diameter (Model 1)",
+     xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)", col = point_color)
+x <- with(metasequoia, seq(min(diameter), max(diameter), length.out=2000))
+y <- predict(metasequoia_model1, newdata = data.frame(diameter = x))
+lines(x, y, col = "red", lwd = 5)
+plot(height ~ diameter, data = metasequoia, main = "Height vs Diameter (Model 2)",
+     xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)", col = point_color)
+x <- with(metasequoia, seq(min(diameter), max(diameter), length.out=2000))
+y <- predict(metasequoia_model2, newdata = data.frame(diameter = x))
+lines(x, y, col = "orange", lwd = 5)
+plot(height ~ diameter, data = metasequoia, main = "Height vs Diameter (Model 3)",
+     xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)", col = point_color)
+x <- with(metasequoia, seq(min(diameter), max(diameter), length.out=2000))
+y <- predict(metasequoia_model3, newdata = data.frame(diameter = x))
+lines(x, y, col = "green", lwd = 5)
+plot(height ~ diameter, data = metasequoia, main = "Height vs Diameter (Model 4)",
+     xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)", col = point_color)
+x <- with(metasequoia, seq(min(diameter), max(diameter), length.out=2000))
+y <- predict(metasequoia_model4, newdata = data.frame(diameter = x))
+lines(x, y, col = "blue", lwd = 5)
+plot(height ~ diameter, data = metasequoia, main = "Height vs Diameter (Model 5)",
+     xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)", col = point_color)
+x <- with(metasequoia, seq(min(diameter), max(diameter), length.out=2000))
+y <- predict(metasequoia_model5, newdata = data.frame(diameter = x))
+lines(x, y, col = "purple", lwd = 5)
+```
+
+![](groupproject_files/figure-latex/Scatterplots with all model lines-1.pdf)<!-- --> 
 
 
 ```r
@@ -362,6 +397,49 @@ AIC(metasequoia_model5)
 
 ```
 ## [1] 1961.846
+```
+
+
+```r
+# calculating BIC
+# we want the lowest value which is model 4
+BIC(metasequoia_model1)
+```
+
+```
+## [1] 1944.9
+```
+
+```r
+BIC(metasequoia_model2)
+```
+
+```
+## [1] 1991.402
+```
+
+```r
+BIC(metasequoia_model3)
+```
+
+```
+## [1] 1935.849
+```
+
+```r
+BIC(metasequoia_model4)
+```
+
+```
+## [1] 1932.994
+```
+
+```r
+BIC(metasequoia_model5)
+```
+
+```
+## [1] 1978.704
 ```
 
 
@@ -840,21 +918,21 @@ qqnorm(best.AIC.model$residuals)
 qqline(best.AIC.model$residuals)
 ```
 
-![](groupproject_files/figure-latex/unnamed-chunk-14-1.pdf)<!-- --> 
+![](groupproject_files/figure-latex/unnamed-chunk-15-1.pdf)<!-- --> 
 
 ```r
 qqnorm(best.BIC.model$residuals)
 qqline(best.BIC.model$residuals)
 ```
 
-![](groupproject_files/figure-latex/unnamed-chunk-14-2.pdf)<!-- --> 
+![](groupproject_files/figure-latex/unnamed-chunk-15-2.pdf)<!-- --> 
 
 ```r
 qqnorm(model4$residuals)
 qqline(model4$residuals)
 ```
 
-![](groupproject_files/figure-latex/unnamed-chunk-14-3.pdf)<!-- --> 
+![](groupproject_files/figure-latex/unnamed-chunk-15-3.pdf)<!-- --> 
 
 
 ```r
@@ -1237,6 +1315,33 @@ plot(height ~ diameter, data = metasequoia, main = "Scatterplot of Height and Di
      xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)")
 abline(a = 12.546, b = 0.264) # the paper's data's trendline
 abline(metasequoia_model1, col = "red") # trendline for model 1
+point_color <- rgb(0, 0, 0, alpha = 0.25)
+par(mfrow = c(2, 3))
+plot(height ~ diameter, data = metasequoia, main = "Height vs Diameter (Model 1)",
+     xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)", col = point_color)
+x <- with(metasequoia, seq(min(diameter), max(diameter), length.out=2000))
+y <- predict(metasequoia_model1, newdata = data.frame(diameter = x))
+lines(x, y, col = "red", lwd = 5)
+plot(height ~ diameter, data = metasequoia, main = "Height vs Diameter (Model 2)",
+     xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)", col = point_color)
+x <- with(metasequoia, seq(min(diameter), max(diameter), length.out=2000))
+y <- predict(metasequoia_model2, newdata = data.frame(diameter = x))
+lines(x, y, col = "orange", lwd = 5)
+plot(height ~ diameter, data = metasequoia, main = "Height vs Diameter (Model 3)",
+     xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)", col = point_color)
+x <- with(metasequoia, seq(min(diameter), max(diameter), length.out=2000))
+y <- predict(metasequoia_model3, newdata = data.frame(diameter = x))
+lines(x, y, col = "green", lwd = 5)
+plot(height ~ diameter, data = metasequoia, main = "Height vs Diameter (Model 4)",
+     xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)", col = point_color)
+x <- with(metasequoia, seq(min(diameter), max(diameter), length.out=2000))
+y <- predict(metasequoia_model4, newdata = data.frame(diameter = x))
+lines(x, y, col = "blue", lwd = 5)
+plot(height ~ diameter, data = metasequoia, main = "Height vs Diameter (Model 5)",
+     xlab = "Diameter (at breast height in cm)", ylab = "Height (in meters)", col = point_color)
+x <- with(metasequoia, seq(min(diameter), max(diameter), length.out=2000))
+y <- predict(metasequoia_model5, newdata = data.frame(diameter = x))
+lines(x, y, col = "purple", lwd = 5)
 #par(mfrow = c(2, 3))
 # making residuals plot for model 1
 plot(resid(metasequoia_model1) ~ predict(metasequoia_model1), 
@@ -1315,6 +1420,13 @@ AIC(metasequoia_model2)
 AIC(metasequoia_model3)
 AIC(metasequoia_model4)
 AIC(metasequoia_model5)
+# calculating BIC
+# we want the lowest value which is model 4
+BIC(metasequoia_model1)
+BIC(metasequoia_model2)
+BIC(metasequoia_model3)
+BIC(metasequoia_model4)
+BIC(metasequoia_model5)
 # calculating R^2adj
 # we want the highest value which is model 4
 summary(metasequoia_model1)$adj.r.squared
